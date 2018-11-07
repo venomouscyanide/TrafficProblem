@@ -1,10 +1,12 @@
 #Set3Problem1
+#Revision #1
+
 from Classes.vehicle import vehicle
 from Classes.weather import weather
 from Classes.orbit import orbit
 from Functions.functions import print_the_fastest
 from Functions.functions import fastest_vehicle
-from Functions.functions import vehicles_allowed
+
 
 if __name__ == '__main__':
 	'''
@@ -26,6 +28,18 @@ if __name__ == '__main__':
 	bike=vehicle(10,2,"Bike")
 	tuktuk=vehicle(12,1,"TukTuk")
 	car=vehicle(20,3,"Car")
+
+	sunny.vehicles_allowed("Bike")
+	sunny.vehicles_allowed("TukTuk")
+	sunny.vehicles_allowed("Car")
+
+	rainy.vehicles_allowed("TukTuk")
+	rainy.vehicles_allowed("Car")
+
+	windy.vehicles_allowed("Bike")
+	windy.vehicles_allowed("Car")
+
+	priority=["Bike","TukTuk","Car"]
 
 	'''
 	get the list of weather,vehicle names
@@ -78,7 +92,8 @@ if __name__ == '__main__':
 	'''
 	find out the vehicles allowed in the inputted weather
 	'''
-	vehicles_allowed=vehicles_allowed(weather_names[weather_index])
+
+	vehicles_allowed=weathers_object_list[weather_index].get_allowed_vehicles()
 
 	vehicles_allowed_objects=[]
 	'''
@@ -89,9 +104,11 @@ if __name__ == '__main__':
 		vehicles_allowed_objects.append(vehicles_object_list[vehicle_names.index(x)])
 
 	'''
-	pass the orbit objects,orbit1 speed, orbit2 speed, allowed vehicles' object list,weather object of inputted weather
+	pass the orbit objects,orbit1 speed, orbit2 speed, allowed vehicles' object list,
+	weather object of inputted weather
  	'''
-	fastest_vehicle,fastest_orbit=fastest_vehicle(orbits_object_list,orbit1_speed,orbit2_speed,vehicles_allowed_objects,weathers_object_list[weather_index])
+	fastest_vehicle,fastest_orbit=fastest_vehicle(orbits_object_list,orbit1_speed,orbit2_speed,
+		vehicles_allowed_objects,weathers_object_list[weather_index],priority)
 	
 	'''
 	finally print the fastest vehicle in which orbit number
