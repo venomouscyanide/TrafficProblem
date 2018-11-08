@@ -1,5 +1,5 @@
 #Set3Problem1
-#Revision #1
+#Revision V2.0
 
 from Classes.vehicle import vehicle
 from Classes.weather import weather
@@ -16,10 +16,23 @@ if __name__ == '__main__':
 	'''
 
 	'''
+	get the inputted weather
+	'''
+	weather_inputted=input().split()
+	weather_inputted=weather_inputted[2]
+
+	'''
+	input the two orbit speeds
+	'''
+	inp1=input().split()
+	inp2=input().split()
+	orbit1_speed=int(inp1[4])
+	orbit2_speed=int(inp2[4])
+	'''
 	set all the values of the classes as per requirement
 	'''
-	orbit1=orbit(18,20)
-	orbit2=orbit(20,10)
+	orbit1=orbit(1,18,20,orbit1_speed)
+	orbit2=orbit(2,20,10,orbit2_speed)	
 
 	sunny=weather(-.1,"Sunny")
 	rainy=weather(.2,"Rainy")
@@ -62,33 +75,17 @@ if __name__ == '__main__':
 	orbits_object_list=[]
 	orbits_object_list.extend([orbit1,orbit2])
 
-	'''
-	get the inputted weather
-	'''
-	weather=input().split()
-	weather=weather[2]
 	
 	'''
 	finding the index of the weather to know
 	which weather object to use
 	'''
 	for i in weather_names:
-		if(i==weather):
+		if(i==weather_inputted):
 			weather_index=weather_names.index(i)
 			break
-
-	'''
-	input the two orbit speeds
-	'''
-	inp1=input().split()
-	inp2=input().split()
-
-	'''
-	extract out and store the orbit speeds
-	'''
-	orbit1_speed=int(inp1[4])
-	orbit2_speed=int(inp2[4])
 	
+
 	'''
 	find out the vehicles allowed in the inputted weather
 	'''
@@ -107,8 +104,8 @@ if __name__ == '__main__':
 	pass the orbit objects,orbit1 speed, orbit2 speed, allowed vehicles' object list,
 	weather object of inputted weather
  	'''
-	fastest_vehicle,fastest_orbit=fastest_vehicle(orbits_object_list,orbit1_speed,orbit2_speed,
-		vehicles_allowed_objects,weathers_object_list[weather_index],priority)
+	fastest_vehicle,fastest_orbit=fastest_vehicle(orbits_object_list,
+			vehicles_allowed_objects,weathers_object_list[weather_index],priority)
 	
 	'''
 	finally print the fastest vehicle in which orbit number
