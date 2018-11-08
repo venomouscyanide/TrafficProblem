@@ -38,8 +38,8 @@ def fastest_vehicle(orbits,vehicles,weather,priority):
 	resolve disputes in case of same min_time of more than one vehicle.
 	'''
 	list_of_times=[]
-
-	for x in orbits:#iterate through the two orbits
+	
+	for x in orbits:#iterate through the orbits
 		x.calculate_speeds(vehicles,weather)
 
 	for x in orbits:
@@ -51,3 +51,20 @@ def fastest_vehicle(orbits,vehicles,weather,priority):
 
 	fastest_vehicle=print_the_fastest(list_of_times,priority)#send to function to resolve disputes if any
 	return(fastest_vehicle,fastest_orbit)#return to main the fastest vehicle and the orbit number 
+
+def decide_route(fastest_orbit,fastest_vehicle,destinations):
+	'''
+	A simple function to calculate dest1 and dest2
+	and which orbit to choose first and which to choose 
+	second. The second choice for an orbit will always be 
+	orbit4
+	'''
+	orbit_list1=[1,2]
+
+	if(fastest_orbit in orbit_list1):
+		orbit2=4
+	else:
+		destinations=destinations[::-1]
+		orbit2=4
+
+	return(destinations,orbit2)

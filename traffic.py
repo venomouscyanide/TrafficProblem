@@ -1,40 +1,31 @@
-#Set3Problem1
+#Set3Problem1 and Set3Problem2
 #Revision V2.0
 from Classes.vehicle import vehicle
 from Classes.weather import weather
 from Classes.orbit import orbit
 from Functions.logic import print_the_fastest
 from Functions.logic import fastest_vehicle
+from Functions.logic import decide_route
 from Functions.initialize import initialize
+from Functions.initialize import take_user_input
+
 
 if __name__ == '__main__':
 	'''
 	the driver function to print the fastest vehicle 
-	Input: the weather and the max speed in each orbit1_speed
-	Output: the fastest vehicle and in which orbit number
 	'''
 
 	'''
-	get the inputted weather
+	function to take input from STDIN
 	'''
-	weather_inputted=input().split()
-	weather_inputted=weather_inputted[2]
-
-	'''
-	input the two orbit speeds
-	'''
-	inp1=input().split()
-	inp2=input().split()
-	orbit1_speed=int(inp1[4])
-	orbit2_speed=int(inp2[4])
+	orbit_speeds,weather_inputted,selection=take_user_input()
 
 	'''
 	set all the values of the classes as per requirement using
 	initialize()
 	'''
-	
 	weather_names,vehicle_names,vehicles_object_list, \
-	weathers_object_list,orbits_object_list,priority=initialize(orbit1_speed,orbit2_speed)
+	weathers_object_list,orbits_object_list,priority,destinations=initialize(orbit_speeds,selection)
 	
 	'''
 	finding the index of the weather to know
@@ -64,9 +55,20 @@ if __name__ == '__main__':
 	weather object of inputted weather
  	'''
 	fastest_vehicle,fastest_orbit=fastest_vehicle(orbits_object_list,
-			vehicles_allowed_objects,weathers_object_list[weather_index],priority)
+			vehicles_allowed_objects,weathers_object_list[weather_index],
+			priority)
 	
 	'''
-	finally print the fastest vehicle in which orbit number
+	finally print the fastest vehicle in which orbit number and the route if necessary
 	'''
-	print("Vehicle {vehicle} on Orbit{orbit_no}".format(vehicle=fastest_vehicle,orbit_no=fastest_orbit))
+	if(selection==1):
+		print("Vehicle {vehicle} on Orbit{orbit_no}".format(vehicle=fastest_vehicle,orbit_no=fastest_orbit))
+
+	elif(selection==2):
+		destinations_ordered,orbit2=decide_route(fastest_orbit,fastest_vehicle,destinations)
+		
+		print("Vehicle {vehicle} to {dest1} via Orbit{orbit_no1} and {dest2} via Orbit{orbit_no2}".
+			format(vehicle=fastest_vehicle,dest1=destinations_ordered[0],orbit_no1=fastest_orbit,
+				dest2=destinations_ordered[1],orbit_no2=orbit2))
+
+	
