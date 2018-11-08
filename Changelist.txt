@@ -2,3 +2,5 @@ Changelist for v2.0
 1.Breakdown the core logic into several methods
 2.Reduce the amount of hardcoded data
 3.Added more behaviour to orbit class to find speeds
+4.Break down lenghty main into methods
+5.merge problem 1 and 2 for reusability

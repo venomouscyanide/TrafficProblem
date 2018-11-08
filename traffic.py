@@ -1,12 +1,11 @@
 #Set3Problem1
 #Revision V2.0
-
 from Classes.vehicle import vehicle
 from Classes.weather import weather
 from Classes.orbit import orbit
-from Functions.functions import print_the_fastest
-from Functions.functions import fastest_vehicle
-
+from Functions.logic import print_the_fastest
+from Functions.logic import fastest_vehicle
+from Functions.initialize import initialize
 
 if __name__ == '__main__':
 	'''
@@ -28,53 +27,14 @@ if __name__ == '__main__':
 	inp2=input().split()
 	orbit1_speed=int(inp1[4])
 	orbit2_speed=int(inp2[4])
-	'''
-	set all the values of the classes as per requirement
-	'''
-	orbit1=orbit(1,18,20,orbit1_speed)
-	orbit2=orbit(2,20,10,orbit2_speed)	
-
-	sunny=weather(-.1,"Sunny")
-	rainy=weather(.2,"Rainy")
-	windy=weather(0,"Windy")
-
-	bike=vehicle(10,2,"Bike")
-	tuktuk=vehicle(12,1,"TukTuk")
-	car=vehicle(20,3,"Car")
-
-	sunny.vehicles_allowed("Bike")
-	sunny.vehicles_allowed("TukTuk")
-	sunny.vehicles_allowed("Car")
-
-	rainy.vehicles_allowed("TukTuk")
-	rainy.vehicles_allowed("Car")
-
-	windy.vehicles_allowed("Bike")
-	windy.vehicles_allowed("Car")
-
-	priority=["Bike","TukTuk","Car"]
 
 	'''
-	get the list of weather,vehicle names
+	set all the values of the classes as per requirement using
+	initialize()
 	'''
-	weather_names=[]
-	weather_names.extend([sunny.getname(),rainy.getname(),windy.getname()])
-
-	vehicle_names=[]
-	vehicle_names.extend([bike.getname(),tuktuk.getname(),car.getname()])
-
-	'''
-	get the list of vehicle,weather,orbit objects
-	'''
-	vehicles_object_list=[]
-	vehicles_object_list.extend([bike,tuktuk,car])
-
-	weathers_object_list=[]
-	weathers_object_list.extend([sunny,rainy,windy])
-
-	orbits_object_list=[]
-	orbits_object_list.extend([orbit1,orbit2])
-
+	
+	weather_names,vehicle_names,vehicles_object_list, \
+	weathers_object_list,orbits_object_list,priority=initialize(orbit1_speed,orbit2_speed)
 	
 	'''
 	finding the index of the weather to know
@@ -85,7 +45,6 @@ if __name__ == '__main__':
 			weather_index=weather_names.index(i)
 			break
 	
-
 	'''
 	find out the vehicles allowed in the inputted weather
 	'''
