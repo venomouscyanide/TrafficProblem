@@ -43,11 +43,56 @@ def take_user_input():
 	
 	return orbit_speeds,weather_inputted,selection
 
+def initialize_objects_helper():
+	'''
+	Helps initialize the class instances
+	'''
+	weather1=weather(-.1,"Sunny")
+	weather2=weather(.2,"Rainy")
+	weather3=weather(0,"Windy")
+
+	vehicle1=vehicle(10,2,"Bike")
+	vehicle2=vehicle(12,1,"TukTuk")
+	vehicle3=vehicle(20,3,"Car")
+
+	weather1.vehicles_allowed("Bike")
+	weather1.vehicles_allowed("TukTuk")
+	weather1.vehicles_allowed("Car")
+
+	weather2.vehicles_allowed("TukTuk")
+	weather2.vehicles_allowed("Car")
+
+	weather3.vehicles_allowed("Bike")
+	weather3.vehicles_allowed("Car")
+
+	'''
+	get the list of weather,vehicle names
+	'''
+	weather_names=[]
+	weather_names.extend([weather1.getname(),weather2.getname(),weather3.getname()])
+
+	vehicle_names=[]
+	vehicle_names.extend([vehicle1.getname(),vehicle2.getname(),vehicle3.getname()])
+
+	'''
+	get the list of vehicle,weather,orbit objects
+	'''
+	vehicles_object_list=[]
+	vehicles_object_list.extend([vehicle1,vehicle2,vehicle3])
+
+	weathers_object_list=[]
+	weathers_object_list.extend([weather1,weather2,weather3])
+
+
+	return(weather_names,vehicle_names,vehicles_object_list,
+		weathers_object_list)
+
 def initialize(orbit_speeds,selection):
 	'''
 	function to initialize the class instances with values
 	as per the problem 
 	'''
+
 	orbit1=orbit(1,18,20,orbit_speeds[0])
 	orbit2=orbit(2,20,10,orbit_speeds[1])
 
@@ -55,45 +100,15 @@ def initialize(orbit_speeds,selection):
 		orbit3=orbit(3,30,15,orbit_speeds[2])
 		orbit4=orbit(4,15,18,orbit_speeds[3])	
 
-	sunny=weather(-.1,"Sunny")
-	rainy=weather(.2,"Rainy")
-	windy=weather(0,"Windy")
+	weather_names,vehicle_names,vehicles_object_list, \
+		weathers_object_list=initialize_objects_helper()
 
-	bike=vehicle(10,2,"Bike")
-	tuktuk=vehicle(12,1,"TukTuk")
-	car=vehicle(20,3,"Car")
+	priority=[]
+	for i in vehicle_names:
+		priority.append(i)#priority bike>tuktuk>car
 
-	sunny.vehicles_allowed("Bike")
-	sunny.vehicles_allowed("TukTuk")
-	sunny.vehicles_allowed("Car")
-
-	rainy.vehicles_allowed("TukTuk")
-	rainy.vehicles_allowed("Car")
-
-	windy.vehicles_allowed("Bike")
-	windy.vehicles_allowed("Car")
-
-	priority=["Bike","TukTuk","Car"]
-	destinations=["Hallitharam","RK Puram"]
-
-	'''
-	get the list of weather,vehicle names
-	'''
-	weather_names=[]
-	weather_names.extend([sunny.getname(),rainy.getname(),windy.getname()])
-
-	vehicle_names=[]
-	vehicle_names.extend([bike.getname(),tuktuk.getname(),car.getname()])
-
-	'''
-	get the list of vehicle,weather,orbit objects
-	'''
-	vehicles_object_list=[]
-	vehicles_object_list.extend([bike,tuktuk,car])
-
-	weathers_object_list=[]
-	weathers_object_list.extend([sunny,rainy,windy])
-
+	destinations=["Hallitharam","RK Puram"]#as per problem. Hardcoded
+	
 	orbits_object_list=[]
 
 	if(selection==1):
