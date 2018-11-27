@@ -43,9 +43,10 @@ def take_user_input():
 	
 	return orbit_speeds,weather_inputted,selection
 
-def initialize_objects_helper():
+def hardcoded_values():
 	'''
-	Helps initialize the class instances
+	This function is the only place of hard 
+	coding the values as needed. 
 	'''
 	weather1=weather(-.1,"Sunny")
 	weather2=weather(.2,"Rainy")
@@ -55,15 +56,26 @@ def initialize_objects_helper():
 	vehicle2=vehicle(12,1,"TukTuk")
 	vehicle3=vehicle(20,3,"Car")
 
-	weather1.vehicles_allowed("Bike")
-	weather1.vehicles_allowed("TukTuk")
-	weather1.vehicles_allowed("Car")
+	weather1.vehicles_allowed(vehicle1.getname())
+	weather1.vehicles_allowed(vehicle2.getname())
+	weather1.vehicles_allowed(vehicle3.getname())
 
-	weather2.vehicles_allowed("TukTuk")
-	weather2.vehicles_allowed("Car")
+	weather2.vehicles_allowed(vehicle2.getname())
+	weather2.vehicles_allowed(vehicle3.getname())
 
-	weather3.vehicles_allowed("Bike")
-	weather3.vehicles_allowed("Car")
+	weather3.vehicles_allowed(vehicle1.getname())
+	weather3.vehicles_allowed(vehicle3.getname())
+
+	return weather1,weather2,weather3, \
+			vehicle1,vehicle2,vehicle3
+
+def initialize_objects_helper():
+	'''
+	Helps initialize the class instances with
+	hardcoded values for vehicles and weather
+	'''
+	weather1,weather2,weather3, \
+	vehicle1,vehicle2,vehicle3=hardcoded_values()
 
 	'''
 	get the list of weather,vehicle names
