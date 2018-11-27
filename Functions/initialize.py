@@ -56,6 +56,8 @@ def hardcoded_values():
 	vehicle2=vehicle(12,1,"TukTuk")
 	vehicle3=vehicle(20,3,"Car")
 
+	destinations=["Hallitharam","RK Puram"]#as per problem. Hardcoded
+
 	weather1.vehicles_allowed(vehicle1.getname())
 	weather1.vehicles_allowed(vehicle2.getname())
 	weather1.vehicles_allowed(vehicle3.getname())
@@ -67,7 +69,7 @@ def hardcoded_values():
 	weather3.vehicles_allowed(vehicle3.getname())
 
 	return weather1,weather2,weather3, \
-			vehicle1,vehicle2,vehicle3
+			vehicle1,vehicle2,vehicle3,destinations
 
 def initialize_objects_helper():
 	'''
@@ -75,7 +77,7 @@ def initialize_objects_helper():
 	hardcoded values for vehicles and weather
 	'''
 	weather1,weather2,weather3, \
-	vehicle1,vehicle2,vehicle3=hardcoded_values()
+	vehicle1,vehicle2,vehicle3,destinations=hardcoded_values()
 
 	'''
 	get the list of weather,vehicle names
@@ -97,7 +99,7 @@ def initialize_objects_helper():
 
 
 	return(weather_names,vehicle_names,vehicles_object_list,
-		weathers_object_list)
+		weathers_object_list,destinations)
 
 def initialize(orbit_speeds,selection):
 	'''
@@ -113,13 +115,11 @@ def initialize(orbit_speeds,selection):
 		orbit4=orbit(4,15,18,orbit_speeds[3])	
 
 	weather_names,vehicle_names,vehicles_object_list, \
-		weathers_object_list=initialize_objects_helper()
+		weathers_object_list,destinations=initialize_objects_helper()
 
 	priority=[]
 	for i in vehicle_names:
 		priority.append(i)#priority bike>tuktuk>car
-
-	destinations=["Hallitharam","RK Puram"]#as per problem. Hardcoded
 	
 	orbits_object_list=[]
 
